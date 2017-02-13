@@ -34,9 +34,11 @@ void updatePlayer() {
     nextX = playerX;
     nextY = playerY;
   }
-  if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_" ) ) {
-    gameState=GAMEOVER;
-  }
+  // wenn Bird ueber Diamant Kachel leauft, dann wird im Score ein Punkt dazugezaehlt und die Kachel verschwindet
+  //if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_" ) ) {
+  //  gameState=ScoreUp;
+  //}
+  
   if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "E" ) ) {
     gameState=GAMEWON;
   }
