@@ -1,4 +1,13 @@
 Map map;
+
+//Monster ELLIPSE (x, y)
+float x, y;
+float vX, vY;
+float r = 20;
+
+
+
+
 // Position of player center in level coordinates
 float playerX, playerY;
 // Velocity of player
@@ -76,4 +85,5 @@ void draw() {
   drawMap();
   drawPlayer();
   drawText();
+  drawMonster();
 }

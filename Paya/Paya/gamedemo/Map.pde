@@ -509,4 +509,3 @@ class Map
   // width and height of an element in pixels
   int tileSize;
 }
-
