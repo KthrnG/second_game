@@ -2,16 +2,16 @@ class Monster {
 
   float x, y;
   float vX, vY;
-  float speed;
+  // float speed;
   float radius;
 
   //Konstruktor Monster
   Monster(float x, float y) {
     this.x = x;
     this.y = y;
-    this.vY = 1;
-    this.vX = 1;
-    this.speed = 1;
+    this.vY = 0;
+    this.vX = 30;
+    // this.speed = 1;
     this.radius = 10;
   }
 
@@ -24,8 +24,8 @@ class Monster {
   }
 
   void update() {
-    float nextX = x + vX/frameRate, 
-      nextY = Y + vY/frameRate;
+    float nextX = x + vX/frameRate;
+    float nextY = y + vY/frameRate;
     if ( map.testTileInRect( nextX-radius, nextY-radius, 2*radius, 2*radius, "W" ) ) {
       vX = -vX;
       vY = -vY;

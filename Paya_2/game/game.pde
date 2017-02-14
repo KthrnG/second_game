@@ -72,6 +72,9 @@ void drawText() {
 void draw() {
   if (gameState==GAMERUNNING) {
     player.update();
+    for(Monster monster: monsters) {
+      monster.update();
+    }
     time+=1/frameRate;
   } else if (keyPressed && key==' ') {
     if (gameState==GAMEWAIT) gameState=GAMERUNNING;
@@ -84,7 +87,6 @@ void draw() {
   drawMap();
   player.draw();
   for (Monster monster : monsters) {
-    monster.update();
     monster.draw();
     if (monster.collidesWith(player)) { 
       gameState = GAMEOVER;
