@@ -19,6 +19,8 @@ void setup() {
 
 void newGame () {
   map = new Map( "demo.map");
+  // Liste von Monstern initialisieren
+  monsters = new ArrayList<Monster>();
   for ( int x = 0; x < map.w; ++x ) {
     for ( int y = 0; y < map.h; ++y ) {
       // put player at 'S' tile and replace with 'F'  
@@ -29,13 +31,15 @@ void newGame () {
         player = new Player(playerX, playerY);
         map.set(x, y, 'F');
       }
+      if (map.at (x, y) == 'F') {
+
+        float monsterX = map.centerXOfTile(x);
+        float monsterY = map.centerYOfTile(y);
+        monsters.add(new Monster(monsterX, monsterY));
+      }
     }
   }
 
-  // Liste von Monstern initialisieren
-  monsters = new ArrayList<Monster>();
-  monsters.add(new Monster());
-  monsters.add(new Monster());
 
   time=0;
   // playerVX = 0;
@@ -79,9 +83,10 @@ void draw() {
   player.draw();
   for (Monster monster : monsters) {
     monster.draw();
-    if (monster.collidesWith(player)) { 
-      gameState = GAMEOVER;
-    }
+    //if (monster.collidesWith(player)) { 
+    //  gameState = GAMEOVER;
   }
-  drawText();
 }
+//drawText();
+//}
+//
