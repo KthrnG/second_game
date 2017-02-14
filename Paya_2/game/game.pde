@@ -32,10 +32,12 @@ void newGame () {
         map.set(x, y, 'F');
       }
       if (map.at (x, y) == 'F') {
-
-        float monsterX = map.centerXOfTile(x);
-        float monsterY = map.centerYOfTile(y);
-        monsters.add(new Monster(monsterX, monsterY));
+        //Mit einer Chance von 4% landet in jedem 'F' Tile ein Monster
+        if (random(100) <= 4) {
+          float monsterX = map.centerXOfTile(x);
+          float monsterY = map.centerYOfTile(y);
+          monsters.add(new Monster(monsterX, monsterY));
+        }
       }
     }
   }
