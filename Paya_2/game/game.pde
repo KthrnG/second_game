@@ -1,6 +1,7 @@
 Map map;
 Player player;
 Background background;
+ArrayList<Monster> monsters;
 
 // left / top border of the screen in map coordinates
 // used for scrolling
@@ -10,12 +11,10 @@ float time;
 int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
 int gameState;
 
-// PImage backgroundImg;
-
 void setup() {
   size( 500, 500  );
   background = new Background();
-  newGame ();
+  newGame();
 }
 
 void newGame () {
@@ -26,11 +25,18 @@ void newGame () {
       if ( map.at(x, y) == 'S' ) {
         float playerX = map.centerXOfTile (x);
         float playerY = map.centerYOfTile (y);
+        // Konstruktor aufrufen
         player = new Player(playerX, playerY);
         map.set(x, y, 'F');
       }
     }
   }
+  
+  // Liste von Monstern initialisieren
+  monsters = new ArrayList<Monster>();
+  monsters.add(new Monster());
+  monsters.add(new Monster());
+  
   time=0;
   // playerVX = 0;
   // playerVY = 0;
@@ -54,7 +60,7 @@ void drawText() {
   textSize(40);  
   if (gameState==GAMEWAIT) text ("press space to start", width/2, height/2);
   else if (gameState==GAMEOVER) text ("game over", width/2, height/2);
-  else if (gameState==GAMEWON) text ("won in "+ round(time) + " seconds", width/2, height/2);
+  else if (gameState==GAMEWON) text ("won with a score of "+ player.score, width/2, height/2);
 }
 
 void draw() {
@@ -71,5 +77,9 @@ void draw() {
   background.draw();
   drawMap();
   player.draw();
+  for (Monster monster : monsters) {
+    monster.draw();
+    if (monster.collidesWith(player)) gameState = GAMEOVER;
+  }
   drawText();
 }

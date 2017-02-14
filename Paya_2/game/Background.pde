@@ -2,7 +2,7 @@ class Background {
   PImage backgroundImg;
 
   Background() {
-    backgroundImg = loadImage ("images/fire.jpg");
+    backgroundImg = loadImage ("images/background.jpg");
   }
 
   void draw() {

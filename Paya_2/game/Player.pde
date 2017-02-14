@@ -8,6 +8,8 @@ class Player {
   float playerSpeed = 150;
   // The player is a circle and this is its radius
   float playerR = 10;
+  // The score of the player
+  int score;
 
   // Konstruktor
   Player(float x, float y) {
@@ -15,6 +17,7 @@ class Player {
     this.playerY = y;
     this.playerVX = 0;
     this.playerVY = 0;
+    this.score = 0;
   }
 
   void keyPressed() {
@@ -44,7 +47,11 @@ class Player {
       nextY = playerY;
     }
     if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_" ) ) {
-      gameState=GAMEOVER;
+      score++;
+      int x = map.xOfTileAtPixel(playerX);
+      int y = map.yOfTileAtPixel(playerY);
+      map.set(x, y, 'F');
+      // gameState=GAMEOVER;
     }
     if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "E" ) ) {
       gameState=GAMEWON;
