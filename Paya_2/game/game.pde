@@ -12,7 +12,7 @@ int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
 int gameState;
 
 void setup() {
-  size( 500, 500  );
+  size( 700, 700  );
   background = new Background();
   newGame();
 }
