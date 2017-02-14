@@ -84,6 +84,7 @@ void draw() {
   drawMap();
   player.draw();
   for (Monster monster : monsters) {
+    monster.update();
     monster.draw();
     if (monster.collidesWith(player)) { 
       gameState = GAMEOVER;
