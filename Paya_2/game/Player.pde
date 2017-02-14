@@ -7,9 +7,10 @@ class Player {
   // Speed at which the player moves
   float playerSpeed = 150;
   // The player is a circle and this is its radius
-  float playerR = 10;
+  float playerR = 20;
   // The score of the player
   int score;
+  PImage bird_right;
 
   // Konstruktor
   Player(float x, float y) {
@@ -18,6 +19,7 @@ class Player {
     this.playerVX = 0;
     this.playerVY = 0;
     this.score = 0;
+    bird_right = loadImage("images/bird_right.png");
   }
 
   void keyPressed() {
@@ -65,7 +67,6 @@ class Player {
     // draw player
     noStroke();
     fill(0, 255, 255);
-    ellipseMode(CENTER);
-    ellipse( playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR );
+    image (bird_right, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
   }
 }
