@@ -31,12 +31,12 @@ void newGame () {
       }
     }
   }
-  
+
   // Liste von Monstern initialisieren
   monsters = new ArrayList<Monster>();
   monsters.add(new Monster());
   monsters.add(new Monster());
-  
+
   time=0;
   // playerVX = 0;
   // playerVY = 0;
@@ -79,7 +79,9 @@ void draw() {
   player.draw();
   for (Monster monster : monsters) {
     monster.draw();
-    if (monster.collidesWith(player)) gameState = GAMEOVER;
+    if (monster.collidesWith(player)) { 
+      gameState = GAMEOVER;
+    }
   }
   drawText();
 }
