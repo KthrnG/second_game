@@ -36,8 +36,13 @@ class Monster {
     y = nextY;
   }
 
+  // Steht das Monster auf dem gleichen Tile wie der Player?
   boolean collidesWith(Player player) {
-    // TODO Steht das Monster auf dem gleichen Tile wie der Player?
-    return false;
+    int playerTileX = map.xOfTileAtPixel(player.playerX);
+    int playerTileY = map.yOfTileAtPixel(player.playerY);
+    int monsterTileX = map.xOfTileAtPixel(x);
+    int monsterTileY = map.yOfTileAtPixel(y);
+    
+    return playerTileX == monsterTileX && playerTileY == monsterTileY;
   }
 }
