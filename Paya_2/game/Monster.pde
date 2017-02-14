@@ -15,7 +15,6 @@ class Monster {
     this.radius = 10;
   }
 
-
   void draw() {
     // TODO Monster zeichnen
     noStroke();
@@ -24,9 +23,8 @@ class Monster {
     ellipse(x - screenLeftX, y - screenTopY, 2*radius, 2*radius);
   }
 
-  //boolean collidesWith(Player player) {
-  //  // TODO Steht das Monster auf dem gleichen Tile wie der Player?
-  //  return false;
-  //}
+  boolean collidesWith(Player player) {
+    // TODO Steht das Monster auf dem gleichen Tile wie der Player?
+    return false;
+  }
 }
-//

@@ -85,10 +85,9 @@ void draw() {
   player.draw();
   for (Monster monster : monsters) {
     monster.draw();
-    //if (monster.collidesWith(player)) { 
-    //  gameState = GAMEOVER;
+    if (monster.collidesWith(player)) { 
+      gameState = GAMEOVER;
+    }
   }
+  drawText();
 }
-//drawText();
-//}
-//
