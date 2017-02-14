@@ -13,7 +13,7 @@ class Monster {
     this.vY = 0;
     this.vX = 30;
     // this.speed = 1;
-    this.radius = 10;
+    this.radius = 20;
     geier = loadImage("images/Geier.png");
   }
   
