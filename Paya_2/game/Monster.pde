@@ -48,12 +48,9 @@ class Monster {
   }
 
   // Steht das Monster auf dem gleichen Tile wie der Player?
+  // Eine Boolean braucht immer einen Return-Type
+  // Man kann wahlweise auch die Colliding Objects mit Hilfe von den Tiles berechnen
   boolean collidesWith(Player player) {
-    int playerTileX = map.xOfTileAtPixel(player.playerX);
-    int playerTileY = map.yOfTileAtPixel(player.playerY);
-    int monsterTileX = map.xOfTileAtPixel(x);
-    int monsterTileY = map.yOfTileAtPixel(y);
-
-    return playerTileX == monsterTileX && playerTileY == monsterTileY;
+    return dist (player.playerX, player.playerY, x, y) < (player.playerR + radius);
   }
 }
