@@ -8,6 +8,6 @@ class Intro {
 
   void draw()  {
     imageMode(CORNER);
-    image (introImage, 500, 500);
+    image (introImage, 0, 0, 700, 700);
   }
 }
