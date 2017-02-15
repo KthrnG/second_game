@@ -55,8 +55,8 @@ class Player {
       nextX = playerX;
       nextY = playerY;
     }
-
-    if (map.testTileInRect(nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_")) {
+    // Diamanten nur dann in den Score gezaehlt, wenn Player genau in der Diamanten-Kachel steht
+    if (map.testTileFullyInsideRect(nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_")) {
       score++;
       int x = map.xOfTileAtPixel(playerX);
       int y = map.yOfTileAtPixel(playerY);

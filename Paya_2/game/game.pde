@@ -65,6 +65,7 @@ void drawText() {
   fill(0, 255, 0);  
   textSize(40);  
   if (gameState==GAMEWAIT) text ("press space to start", width/2, height/2);
+  else if (gameState == GAMERUNNING) text("score" + player.score, width/2, 10);
   else if (gameState==GAMEOVER) text ("game over", width/2, height/2);
   else if (gameState==GAMEWON) text ("won with a score of "+ player.score, width/2, height/2);
 }
