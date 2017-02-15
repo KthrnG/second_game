@@ -4,21 +4,26 @@ class Monster {
   float vX, vY;
   // float speed;
   float radius;
+  int speed = (int) random (50, 100);
   PImage geier;
+
 
   //Konstruktor Monster
   Monster(float x, float y) {
     this.x = x;
     this.y = y;
-    this.vY = 0;
-    this.vX = 30;
+    //this.vY = 50;
+    //this.vX = 30;
+    if (random(1)> 0.5) {
+      vX = speed;
+    } else vY = speed;
     // this.speed = 1;
     this.radius = 20;
     geier = loadImage("images/Geier.png");
   }
-  
+
   void draw() {
-    // TODO Monster zeichnen
+    // Monster zeichnen
     noStroke();
     fill(0, 0, 0);
     //ellipseMode(CENTER);
@@ -28,8 +33,10 @@ class Monster {
   }
 
   void update() {
+
     float nextX = x + vX/frameRate;
     float nextY = y + vY/frameRate;
+
     if ( map.testTileInRect( nextX-radius, nextY-radius, 2*radius, 2*radius, "W" ) ) {
       vX = -vX;
       vY = -vY;
