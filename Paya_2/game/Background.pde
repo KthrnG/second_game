@@ -15,6 +15,7 @@ class Background {
     // center (width/2), i.e. x=-backgroundImg.width/2+width/2.
     float x = map (screenLeftX, map.widthPixel()/2-width/2, -backgroundImg.width/2+width/2, -0.5);
     float y = map (screenTopY, map.heightPixel()/2-height/2, -backgroundImg.height/2+height/2, -0.5);
+    imageMode(CORNER);
     image (backgroundImg, x, y);
   }
 

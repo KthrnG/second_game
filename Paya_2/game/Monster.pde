@@ -23,6 +23,7 @@ class Monster {
     fill(0, 0, 0);
     //ellipseMode(CENTER);
     //ellipse(x - screenLeftX, y - screenTopY, 2*radius, 2*radius);
+    imageMode(CENTER);
     image(geier, x - screenLeftX, y - screenTopY, 2*radius, 2*radius);
   }
 

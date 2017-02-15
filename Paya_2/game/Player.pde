@@ -43,8 +43,8 @@ class Player {
     float nextX = playerX + playerVX/frameRate, 
       nextY = playerY + playerVY/frameRate;
     if ( map.testTileInRect( nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "W" ) ) {
-      playerVX = -playerVX;
-      playerVY = -playerVY;
+      playerVX = 0;
+      playerVY = 0;
       nextX = playerX;
       nextY = playerY;
     }
@@ -67,6 +67,7 @@ class Player {
     // draw player
     noStroke();
     fill(0, 255, 255);
+    imageMode(CENTER);
     image (bird_right, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
   }
 }
