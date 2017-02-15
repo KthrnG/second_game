@@ -62,12 +62,12 @@ void drawMap() {
 
 void drawText() { 
   textAlign(CENTER, CENTER);
-  fill(0, 255, 0);  
-  textSize(40);  
-  if (gameState==GAMEWAIT) text ("press space to start", width/2, height/2);
-  else if (gameState == GAMERUNNING) text("score" + player.score, width/2, 10);
-  else if (gameState==GAMEOVER) text ("game over", width/2, height/2);
-  else if (gameState==GAMEWON) text ("won with a score of "+ player.score, width/2, height/2);
+  fill(#FF2177);  
+  textSize(20);  
+  if (gameState==GAMEWAIT) text ("PRESS SPACE TO START", 160, height/2);
+  else if (gameState == GAMERUNNING) text("SCORE " + player.score, 160, 10);
+  else if (gameState==GAMEOVER) text ("GAME OVER", width/2, height/2);
+  else if (gameState==GAMEWON) text ("CONGRATULATIONS! YOUR GREEN CARD HAS BEEN APPROVED"+ player.score, width/2, height/2);
 }
 
 void draw() {
