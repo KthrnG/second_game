@@ -23,16 +23,16 @@ class Player {
   }
 
   void keyPressed() {
-    if ( keyCode == UP && playerVY == 0 ) {
+    if ( keyCode == UP ) {
       playerVY = -playerSpeed;
       playerVX = 0;
-    } else if ( keyCode == DOWN && playerVY == 0 ) {
+    } else if ( keyCode == DOWN ) {
       playerVY = playerSpeed;
       playerVX = 0;
-    } else if ( keyCode == LEFT && playerVX == 0 ) {
+    } else if ( keyCode == LEFT ) {
       playerVX = -playerSpeed;
       playerVY = 0;
-    } else if ( keyCode == RIGHT && playerVX == 0 ) {
+    } else if ( keyCode == RIGHT ) {
       playerVX = playerSpeed;
       playerVY = 0;
     }
@@ -48,13 +48,14 @@ class Player {
       nextX = playerX;
       nextY = playerY;
     }
-    if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_" ) ) {
+
+    if (map.testTileInRect(nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_")) {
       score++;
       int x = map.xOfTileAtPixel(playerX);
       int y = map.yOfTileAtPixel(playerY);
       map.set(x, y, 'F');
-      // gameState=GAMEOVER;
     }
+    
     if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "E" ) ) {
       gameState=GAMEWON;
     }
