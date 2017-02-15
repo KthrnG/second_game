@@ -14,6 +14,8 @@ class Player {
   int direction;
   PImage bird_right;
   PImage bird_left;
+  PImage bird_front;
+  PImage bird_back;
 
   // Konstruktor
   Player(float x, float y) {
@@ -24,6 +26,8 @@ class Player {
     this.score = 0;
     bird_right = loadImage("images/bird_right.png");
     bird_left = loadImage("images/bird_left.png");
+    bird_front = loadImage("images/bird_front.png");
+    bird_back = loadImage("images/bird_back.png");
     direction = RIGHT;
   }
 
@@ -31,9 +35,11 @@ class Player {
     if ( keyCode == UP ) {
       playerVY = -playerSpeed;
       playerVX = 0;
+      direction = UP;
     } else if ( keyCode == DOWN ) {
       playerVY = playerSpeed;
       playerVX = 0;
+      direction = DOWN;
     } else if ( keyCode == LEFT ) {
       playerVX = -playerSpeed;
       playerVY = 0;
@@ -84,6 +90,10 @@ class Player {
       image (bird_right, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
     } else if (direction == LEFT) {
       image (bird_left, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
+    } else if (direction == DOWN) {
+      image (bird_front, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
+    } else if (direction == UP) {
+      image (bird_back, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
     }
   }
 }
