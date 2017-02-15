@@ -2,6 +2,7 @@ Map map;
 Player player;
 Background background;
 ArrayList<Monster> monsters;
+Intro intro;
 
 // left / top border of the screen in map coordinates
 // used for scrolling
@@ -20,6 +21,7 @@ void setup() {
 
 void newGame () {
   map = new Map( "demo.map");
+  intro = new Intro();
   // Liste von Monstern initialisieren
   monsters = new ArrayList<Monster>();
   for ( int x = 0; x < map.w; ++x ) {
@@ -46,15 +48,21 @@ void newGame () {
     }
   }
 
-
   time=0;
-  // playerVX = 0;
-  // playerVY = 0;
   gameState = GAMEWAIT;
 }
 
 void keyPressed() {
-  player.keyPressed();
+  if (gameState == GAMERUNNING) 
+    player.keyPressed();
+
+  if (gameState==GAMEWAIT && keyCode == ' ') gameState=GAMERUNNING;
+
+  if ( (gameState==GAMEOVER || gameState==GAMEWON) && keyCode == ' '  ) {
+    newGame();
+    // Um das Spiel nach Gameover ohne Intro nue zu starten
+    // gameState = GAMERUNNING;
+  }
 }
 
 void drawMap() {   
@@ -68,14 +76,19 @@ void drawText() {
   textAlign(CENTER, CENTER);
   fill(#FF2177);  
   textSize(20);  
-  if (gameState==GAMEWAIT) text ("PRESS SPACE TO START", 160, height/2);
-  else if (gameState == GAMERUNNING) text("SCORE " + player.score + "/" + totalNumberOfGreenCards, 160, 10);
+  // if (gameState==GAMEWAIT) text ("PRESS SPACE TO START", 160, height/2);
+  if (gameState == GAMERUNNING) text("SCORE " + player.score + "/" + totalNumberOfGreenCards, 160, 10);
   else if (gameState==GAMEOVER) text ("GAME OVER", width/2, height/2);
   else if (gameState==GAMEWON) text ("CONGRATULATIONS! YOUR GREEN CARD HAS BEEN APPROVED", width/2, height/2);
 }
 
 void draw() {
-  if (gameState==GAMERUNNING) {
+  if (gameState == GAMEWAIT) {
+    intro.draw();
+    return;
+  }
+
+  if (gameState == GAMERUNNING) {
     player.update();
     for (Monster monster : monsters) {
       monster.update();
@@ -84,10 +97,8 @@ void draw() {
       }
     }
     time+=1/frameRate;
-  } else if (keyPressed && key==' ') {
-    if (gameState==GAMEWAIT) gameState=GAMERUNNING;
-    else if (gameState==GAMEOVER || gameState==GAMEWON) newGame();
   }
+
   screenLeftX = player.playerX - width/2;
   screenTopY  = (map.heightPixel() - height)/2;
 
