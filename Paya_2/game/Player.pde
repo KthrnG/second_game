@@ -10,7 +10,10 @@ class Player {
   float playerR = 20;
   // The score of the player
   int score;
+  // In welche RIchtung guckt der Vogel?
+  int direction;
   PImage bird_right;
+  PImage bird_left;
 
   // Konstruktor
   Player(float x, float y) {
@@ -20,6 +23,8 @@ class Player {
     this.playerVY = 0;
     this.score = 0;
     bird_right = loadImage("images/bird_right.png");
+    bird_left = loadImage("images/bird_left.png");
+    direction = RIGHT;
   }
 
   void keyPressed() {
@@ -32,9 +37,11 @@ class Player {
     } else if ( keyCode == LEFT ) {
       playerVX = -playerSpeed;
       playerVY = 0;
+      direction = LEFT;
     } else if ( keyCode == RIGHT ) {
       playerVX = playerSpeed;
       playerVY = 0;
+      direction = RIGHT;
     }
   }
 
@@ -55,7 +62,7 @@ class Player {
       int y = map.yOfTileAtPixel(playerY);
       map.set(x, y, 'F');
     }
-    
+
     if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "E" ) ) {
       gameState=GAMEWON;
     }
@@ -69,6 +76,10 @@ class Player {
     noStroke();
     fill(0, 255, 255);
     imageMode(CENTER);
-    image (bird_right, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
+    if (direction == RIGHT) {
+      image (bird_right, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
+    } else if (direction == LEFT) {
+      image (bird_left, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
+    }
   }
 }
