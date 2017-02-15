@@ -10,6 +10,7 @@ float screenLeftX, screenTopY;
 float time;
 int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
 int gameState;
+int totalNumberOfGreenCards = 0;
 
 void setup() {
   size( 700, 700  );
@@ -39,6 +40,9 @@ void newGame () {
           monsters.add(new Monster(monsterX, monsterY));
         }
       }
+      if (map.at(x, y) == 'H') {
+        totalNumberOfGreenCards++;
+      }
     }
   }
 
@@ -65,9 +69,9 @@ void drawText() {
   fill(#FF2177);  
   textSize(20);  
   if (gameState==GAMEWAIT) text ("PRESS SPACE TO START", 160, height/2);
-  else if (gameState == GAMERUNNING) text("SCORE " + player.score, 160, 10);
+  else if (gameState == GAMERUNNING) text("SCORE " + player.score + "/" + totalNumberOfGreenCards, 160, 10);
   else if (gameState==GAMEOVER) text ("GAME OVER", width/2, height/2);
-  else if (gameState==GAMEWON) text ("CONGRATULATIONS! YOUR GREEN CARD HAS BEEN APPROVED"+ player.score, width/2, height/2);
+  else if (gameState==GAMEWON) text ("CONGRATULATIONS! YOUR GREEN CARD HAS BEEN APPROVED", width/2, height/2);
 }
 
 void draw() {
