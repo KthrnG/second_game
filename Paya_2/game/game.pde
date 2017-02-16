@@ -12,10 +12,21 @@ float time;
 int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
 int gameState;
 int totalNumberOfGreenCards = 0;
+//SOUNDS!
+import ddf.minim.*;
+Minim minim;
+AudioPlayer Intro, bird, voice;
 
 void setup() {
   size( 700, 700  );
   background = new Background();
+  //SOUNDS
+  minim=new Minim(this);
+  Intro=minim.loadFile("bells.mp3");
+  voice=minim.loadFile("run.mp3");
+  bird=minim.loadFile("tin.mp3");
+  Intro.loop();
+
   newGame();
 }
 
@@ -92,7 +103,8 @@ void draw() {
     player.update();
     for (Monster monster : monsters) {
       monster.update();
-      if (monster.collidesWith(player)) { 
+      if (monster.collidesWith(player)) {
+        voice.play();
         gameState = GAMEOVER;
       }
     }
