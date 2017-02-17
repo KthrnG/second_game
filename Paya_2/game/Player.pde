@@ -53,15 +53,14 @@ class Player {
 
   void update() {
     // update player
-    float nextX = playerX + playerVX/frameRate, 
-      nextY = playerY + playerVY/frameRate;
+    float nextX = playerX + playerVX/frameRate;
+    float nextY = playerY + playerVY/frameRate;
     if ( map.testTileInRect( nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "W" ) ) {
       playerVX = 0;
       playerVY = 0;
       nextX = playerX;
       nextY = playerY;
     }
-
 
     // Wir fragen Map auf welcher Tile unser Player steht, wenn "H" zutrifft, dann wird der Diamant eingesammelt und in den Score gezaehlt
     Map.TileReference tile = map.findTileInRect(nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_");
@@ -94,4 +93,5 @@ class Player {
       image (bird_back, playerX - screenLeftX, playerY - screenTopY, 2*playerR, 2*playerR);
     }
   }
+  
 }
