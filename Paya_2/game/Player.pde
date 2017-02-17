@@ -66,17 +66,14 @@ class Player {
     // Wir fragen Map auf welcher Tile unser Player steht, wenn "H" zutrifft, dann wird der Diamant eingesammelt und in den Score gezaehlt
     Map.TileReference tile = map.findTileInRect(nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "H_");
     if (tile != null) {
-         bird.loop();
+      bird.rewind();
+      bird.play();
       score++;
       map.set(tile.x, tile.y, 'F');
       if (score == totalNumberOfGreenCards) {
         gameState=GAMEWON;
       }
     }
-
-    //if ( map.testTileFullyInsideRect (nextX-playerR, nextY-playerR, 2*playerR, 2*playerR, "E" ) ) {
-    //  gameState=GAMEWON;
-    //}
 
     playerX = nextX;
     playerY = nextY;

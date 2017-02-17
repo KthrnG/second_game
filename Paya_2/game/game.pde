@@ -3,7 +3,7 @@ import ddf.minim.*;
 
 Intro intro;
 
-AudioPlayer Intro, bird, voice;
+AudioPlayer introSound, bird, voice;
 Map map;
 Player player;
 Background background;
@@ -24,10 +24,11 @@ void setup() {
   background = new Background();
   //SOUNDS
   Minim minim=new Minim(this);
-  Intro=minim.loadFile("bells.mp3");
+  introSound=minim.loadFile("bells.mp3");
   voice=minim.loadFile("run.mp3");
+  voice.gain().setValue(voice.gain().getMaximum());
   bird=minim.loadFile("tin.mp3");
-  Intro.loop();
+  introSound.loop();
 
   newGame();
 }
@@ -74,7 +75,7 @@ void keyPressed() {
 
   if ( (gameState==GAMEOVER || gameState==GAMEWON) && keyCode == ' '  ) {
     newGame();
-    // Um das Spiel nach Gameover ohne Intro nue zu starten
+    // Um das Spiel nach Gameover ohne Intro neu zu starten
     // gameState = GAMERUNNING;
   }
 }
@@ -107,6 +108,7 @@ void draw() {
     for (Monster monster : monsters) {
       monster.update();
       if (monster.collidesWith(player)) {
+        voice.rewind();
         voice.play();
         gameState = GAMEOVER;
       }
