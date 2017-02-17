@@ -1,27 +1,29 @@
+//SOUNDS!
+import ddf.minim.*;
+
+Intro intro;
+
+AudioPlayer Intro, bird, voice;
 Map map;
 Player player;
 Background background;
 ArrayList<Monster> monsters;
-Intro intro;
+
+int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
+int gameState;
+int totalNumberOfGreenCards = 0;
 
 // left / top border of the screen in map coordinates
 // used for scrolling
 float screenLeftX, screenTopY;
 
 float time;
-int GAMEWAIT=0, GAMERUNNING=1, GAMEOVER=2, GAMEWON=3;
-int gameState;
-int totalNumberOfGreenCards = 0;
-//SOUNDS!
-import ddf.minim.*;
-Minim minim;
-AudioPlayer Intro, bird, voice;
 
 void setup() {
   size( 700, 700  );
   background = new Background();
   //SOUNDS
-  minim=new Minim(this);
+  Minim minim=new Minim(this);
   Intro=minim.loadFile("bells.mp3");
   voice=minim.loadFile("run.mp3");
   bird=minim.loadFile("tin.mp3");
