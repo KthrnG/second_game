@@ -35,6 +35,7 @@ void newGame () {
   intro = new Intro();
   // Liste von Monstern initialisieren
   monsters = new ArrayList<Monster>();
+  totalNumberOfGreenCards = 0;
   for ( int x = 0; x < map.w; ++x ) {
     for ( int y = 0; y < map.h; ++y ) {
       // put player at 'S' tile and replace with 'F'  
